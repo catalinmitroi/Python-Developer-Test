@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Weather App</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>Enter a location to get its weather</h2>
+    <p>Now, you can see the weather for {{ data.city }}:</p>
+    <br />
+    <br />
+
+    <form action="/" method="post">
+
+        <input type="text" name="city" placeholder="Enter location" required>
+
+        <button class="btn" type="submit" >
+            <i class="glyphicon glyphicon-search"></i>
+        </button>
+
+    </form>
+    <br />
+    <br/>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>City</th>
+            <th>Date</th>
+            <th>Max Temp </th>
+            <th>Min Temp </th>
+            <th>Total Precip </th>
+            <th>Sunrise </th>
+            <th>Sunset </th>
+        </tr>
+        </thead>
+        <tbody>
+        {%for i in range(0,3)%}
+        <tr>
+            <td>{{ data.city }}</td>
+            <td>{{ data.date[i].date }}</td>
+            <td>{{ data.date[i].day.maxtemp_c }}</td>
+            <td>{{ data.date[i].day.mintemp_c }}</td>
+            <td>{{ data.date[i].day.totalprecip_mm}}</td>
+            <td>{{ data.date[i].astro.sunrise }}</td>
+            <td>{{ data.date[i].astro.sunset}}</td>
+        </tr>
+        {%endfor%}
+        </tbody>
+    </table>
+</div>
+</body>
+
+</html>
